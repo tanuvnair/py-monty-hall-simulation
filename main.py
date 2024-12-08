@@ -24,6 +24,17 @@ def monty_hall(isSwitching):
     else:
         return False
 
+def print_results(title, result_dict):
+    win_percentage = (result_dict["win"] / (result_dict["win"] + result_dict["loss"])) * 100
+    loss_percentage = 100 - win_percentage
+
+    print(f"\n{'='*40}")
+    print(f"{title}")
+    print(f"{'-'*40}")
+    print(f"Total Wins: {result_dict['win']} ({win_percentage:.2f}%)")
+    print(f"Total Losses: {result_dict['loss']} ({loss_percentage:.2f}%)")
+    print(f"{'='*40}\n")
+
 def main():
     n = 1000
 
@@ -33,7 +44,7 @@ def main():
             player_did_switch["win"] += 1
         else:
             player_did_switch["loss"] += 1
-    print(player_did_switch)
+    print_results("Player who switched doors", player_did_switch)
 
     player_did_not_switch = {"win": 0, "loss": 0}
     for num in range(n):
@@ -41,6 +52,6 @@ def main():
             player_did_not_switch["win"] += 1
         else:
             player_did_not_switch["loss"] += 1
-    print(player_did_not_switch)
+    print_results("Player who did not switch doors", player_did_not_switch)
 
 main()
